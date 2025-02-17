@@ -47,4 +47,15 @@
 .footer-description {
     max-width: 700px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.video-text{
+    z-index: 1;
+    transform: translateY(100%);
+    padding: 50px;
+    padding-top: 0;
+    padding-right: 0;
 }
