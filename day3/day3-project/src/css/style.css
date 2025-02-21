@@ -1,0 +1,61 @@
+.image-div {
+    width: 100%;
+    height: 100vh;
+}
+
+.img-heading {
+    font-size: 70px;
+}
+
+.btn-custom-text-size {
+    font-size: small;
+}
+
+.image-div-text {
+    margin-top: 180px;
+    min-width: 500px;
+}
+
+.image-div-text-bottom {
+    max-width: 700px;
+}
+
+.tesla-text-icon {
+    max-width: 150px;
+}
+
+.custom-gradient {
+    background-image: linear-gradient(90deg, #E8D199, #F2E5C2, #E8D199)
+}
+
+.bottom-3 {
+    bottom: 10px;
+}
+
+.small-icons {
+    width: 24px;
+}
+
+.border-0 {
+    border-radius: 0;
+}
+
+.fs-small {
+    font-size: small;
+}
+
+.footer-description {
+    max-width: 700px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.video-text{
+    z-index: 1;
+    transform: translateY(100%);
+    padding: 50px;
+    padding-top: 0;
+    padding-right: 0;
+}

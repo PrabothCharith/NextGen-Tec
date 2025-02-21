@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 32 32">
+  <!-- Generator: Adobe Illustrator 29.0.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 192)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #3d6ae0;
+      }
+    </style>
+  </defs>
+  <g id="steering_x5F_wheel">
+    <path class="st0" d="M16,0C7.2,0,0,7.2,0,16s7.2,16,16,16,16-7.2,16-16S24.8,0,16,0ZM16,4c5.2,0,9.6,3.4,11.3,8H4.7c1.7-4.6,6.1-8,11.3-8ZM16,18c-1.1,0-2-.9-2-2s.9-2,2-2,2,.9,2,2-.9,2-2,2ZM4,16c5.5,0,9.9,5.3,10,11.8-5.7-1-10-5.9-10-11.8ZM18,27.8c0-6.5,4.5-11.8,10-11.8,0,5.9-4.3,10.8-10,11.8Z"/>
+  </g>
+</svg>
