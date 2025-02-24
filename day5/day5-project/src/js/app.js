@@ -61,3 +61,17 @@ function saveData() {
     }
 
 }
+
+document.getElementById("client-age").addEventListener("mouseenter", function () {
+    if (isNaN(this.value)) {
+        this.value = ''
+    }
+});
+
+document.getElementById("client-age").addEventListener("mouseenter", function () {
+    console.log("Mouse Enter");
+});
+
+document.getElementById("client-age").addEventListener("mouseleave", function () {
+    console.log("Mouse Leave");
+});
