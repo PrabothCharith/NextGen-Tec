@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="background-color: #000;">
+
+    <button onclick="test()">click</button>
+
+    <div id="snow"></div>
+
+    <script src="app.js"></script>
+    <script type="module">
+        //import the Snow module
+        import * as Snow from '/node_modules/snowfall.js/snow.js'
+
+        // Snow script included on the page, already.
+        window.onload = function () {
+            var snow = new Snow.default({
+                id: 'snow'
+            });
+
+            //Can run the snowfall by calling:
+            snow.start();
+        }
+    </script>
+</body>
+
+</html>
