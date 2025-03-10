@@ -92,3 +92,44 @@ fetch("server.php")
 - document.getElementById("output").innerHTML = data; – Displays the response in an HTML element with the ID "output".
 - The response is displayed on the web page.
 
+---
+
+## 6. Status Codes in AJAX Requests
+
+### HTTP Status Codes
+- 100-199: Informational
+- 200-299: Success
+- 300-399: Redirection
+- 400-499: Client Error
+- 500-599: Server Error
+
+### Common Status Codes:
+- 200: "OK" (successful request)
+- 404: "Not Found" (page not found)
+- 500: "Internal Server Error" (server error)
+
+---
+
+## Extra : OLD way of AJAX
+```js
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "server.php", true);
+xhr.onreadystatechange = function() {
+  if (xhr.readyState == 4 && xhr.status == 200) {
+    console.log(xhr.responseText);
+  }
+};
+xhr.send();
+```
+
+- xhr.open("GET", "server.php", true); – Opens a connection to server.php.
+- xhr.onreadystatechange – Handles the response.
+- xhr.responseText – Retrieves the response text.
+- The response is logged to the console.
+
+#### Main Status of XMLHttpRequest
+- 0: request not initialized
+- 1: server connection established
+- 2: request received
+- 3: processing request
+- 4: request finished and response is ready
