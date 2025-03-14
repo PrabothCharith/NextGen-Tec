@@ -31,7 +31,8 @@ Tutorial: [How to Install MySQL on Windows](https://youtu.be/hiS_mWZmmI0?si=6-8V
 > <br>
 > In this video He install custom version, but I recommend you to install full version.
 
-![alt text](image.png)
+![image](https://github.com/user-attachments/assets/a6bbcf24-d5c0-4461-8a99-d034797605f8)
+
 
 <br><br>
 
