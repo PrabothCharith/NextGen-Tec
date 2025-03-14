@@ -8,6 +8,32 @@ SQL (**Structured Query Language**) is used to manage and manipulate databases.
 - Allows filtering, sorting, and organizing data.
 - Used in almost all database systems (**MySQL, PostgreSQL, SQL Server**).
 
+### 1.2 Installing MySQL
+- **MySQL** is a popular open-source database.
+- **MySQL Workbench** is a visual tool to manage databases.
+
+#### For Windows:
+  - **Download MySQL Installer**: [MySQL Installer](https://dev.mysql.com/downloads/installer/)
+
+#### For Mac:
+  - **Download MySQL**: [MySQL Community Server](https://dev.mysql.com/downloads/mysql/)
+  - **Download MySQL Workbench**: [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
+
+<br>
+
+---
+
+#### Video Tutorial:
+Tutorial: [How to Install MySQL on Windows](https://youtu.be/hiS_mWZmmI0?si=6-8VUmKypOD4HtXs&t=80)
+
+> [!IMPORTANT]
+> **Install Full Version**
+> <br>
+> In this video He install custom version, but I recommend you to install full version.
+
+![image](https://github.com/user-attachments/assets/a6bbcf24-d5c0-4461-8a99-d034797605f8)
+
+
 <br><br>
 
 ## 2. SQL Database Basics
@@ -81,7 +107,7 @@ VALUES
 
 ## 6. Retrieving Data (SELECT)
 
-### 6.1 6.1 Selecting All Data
+### 6.1 Selecting All Data
 ```sql
 SELECT * FROM users;
 ```
