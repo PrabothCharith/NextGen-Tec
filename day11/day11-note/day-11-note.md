@@ -81,7 +81,7 @@ VALUES
 
 ## 6. Retrieving Data (SELECT)
 
-### 6.1 6.1 Selecting All Data
+### 6.1 Selecting All Data
 ```sql
 SELECT * FROM users;
 ```
