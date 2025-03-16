@@ -169,11 +169,37 @@ Ensure all database connections and API calls are made over **HTTPS**.
 
 ---
 
-## 7. Summary
+## 7. What is SQL Injection?
+**SQL Injection** is a security vulnerability that allows attackers to manipulate SQL queries by injecting malicious code. It occurs when user input is not properly sanitized and is directly included in SQL statements. This can lead to unauthorized access to sensitive data, data corruption, or even complete system compromise.
+
+### Example of SQL Injection (Unsafe Query)
+```php
+<?php
+$email = $_GET['email'];
+$query = "SELECT * FROM users WHERE email = '$email'"; // Unsafe query
+$result = $conn->query($query);
+?>
+```
+In this scenario, an attacker could provide an email like `user@example.com' OR '1'='1' --`, which would bypass authentication and return all users.
+
+### Safe Version Using Prepared Statements
+```php
+<?php
+$stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+$stmt->execute([$_GET['email']]);
+$data = $stmt->fetch();
+?>
+```
+Using **Prepared Statements** prevents SQL injection by ensuring that user input is treated as data, not executable code.
+
+---
+
+## 8. Summary
 - Use **PDO** over MySQLi for better security.
 - Always **handle errors** with `try-catch`.
 - Use **prepared statements** to prevent SQL injection.
 - Restrict **database user permissions**.
+- Always use prepared statements to prevent SQL injection.
 
 ---
 This note provides a structured approach from **basic setup** to **best security practices** for PHP-MySQL connections.
