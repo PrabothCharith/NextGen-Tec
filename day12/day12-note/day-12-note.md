@@ -29,7 +29,17 @@ CREATE TABLE users (
 
 ## 3. Basic PHP Database Connection
 
-### 3.1 Connecting to MySQL
+### 3.1 What is MySQLi?
+**MySQLi** stands for **MySQL Improved** and is a PHP extension that allows for interaction with MySQL databases. It provides both procedural and object-oriented interfaces. While **MySQLi** is specific to MySQL, **PDO** (PHP Data Objects) is a database abstraction layer that supports multiple database types. 
+
+| Feature        | MySQLi                            | PDO                              |
+|----------------|-----------------------------------|----------------------------------|
+| Database Support | MySQL only                       | Multiple databases               |
+| API Type       | Procedural and Object-oriented    | Object-oriented only             |
+| Named Parameters | No                              | Yes                              |
+| Error Handling  | Traditional error handling       | Exception handling with `PDOException` |
+
+### 3.2 Connecting to MySQL
 ```php
 <?php
 $servername = "localhost";
@@ -46,7 +56,7 @@ echo "Connected successfully!";
 ?>
 ```
 
-### 3.2 Closing the Connection
+### 3.3 Closing the Connection
 ```php
 $conn->close();
 ```
@@ -55,7 +65,20 @@ $conn->close();
 
 ## 4. Best Practices for Database Connection
 
-### 4.1 Use `mysqli` or `PDO`
+### 4.1 What is Try-Catch?
+The **try-catch** statement is used for handling errors in PHP. It allows you to execute code in the `try` block and catch exceptions in the `catch` block.
+
+Example:
+```php
+try {
+    // Code that may throw an exception
+    echo "Hello, World!";
+} catch (Exception $e) {
+    echo "Caught exception: " . $e->getMessage();
+}
+```
+
+### 4.2 Use `mysqli` or `PDO`
 - **PDO** (PHP Data Objects) is recommended for better security and flexibility.
 - Example using PDO:
 ```php
@@ -70,7 +93,10 @@ try {
 ?>
 ```
 
-### 4.2 Use Environment Variables for Credentials
+### 4.3 What are Environment Variables?
+**Environment variables** are dynamic values that store configuration data for your applications. They are preferred over hardcoding credentials because they provide better security and flexibility in different environments.
+
+### 4.4 Use Environment Variables for Credentials
 Instead of hardcoding credentials:
 ```php
 $servername = getenv("DB_HOST");
@@ -79,7 +105,10 @@ $password = getenv("DB_PASS");
 $database = getenv("DB_NAME");
 ```
 
-### 4.3 Always Close Database Connections
+### 4.5 What is PDO?
+**PDO** (PHP Data Objects) is a database abstraction layer that allows access to multiple database types through a uniform interface. It is more secure and flexible compared to MySQLi.
+
+### 4.6 Always Close Database Connections
 ```php
 $conn = null; // PDO
 $conn->close(); // MySQLi
@@ -89,14 +118,17 @@ $conn->close(); // MySQLi
 
 ## 5. Handling Errors
 
-### 5.1 Common Errors
+### 5.1 What is PDOException?
+**PDOException** is an error type specific to **PDO** database operations. It provides detailed information about the error that occurred during database interactions.
+
+### 5.2 Common Errors
 | Error | Cause | Solution |
 |-------|-------|----------|
 | `Access denied for user` | Wrong credentials | Check username/password |
 | `Unknown database` | Database does not exist | Create the database first |
 | `Table doesn’t exist` | Table missing | Verify table creation |
 
-### 5.2 Using Try-Catch for Error Handling
+### 5.3 Using Try-Catch for Error Handling
 ```php
 try {
     $conn = new PDO("mysql:host=localhost;dbname=my_database", "root", "");
@@ -109,16 +141,23 @@ try {
 
 ## 6. Security Best Practices
 
-### 6.1 Use Prepared Statements (Prevent SQL Injection)
+### 6.1 What is Data Sanitization?
+Data sanitization ensures that user input is safe by removing unwanted characters. This process helps prevent security vulnerabilities such as SQL injection.
+
+#### 6.2.1 What is `FILTER_SANITIZE_EMAIL`?
+`FILTER_SANITIZE_EMAIL` removes invalid characters from an email address before using it in the database.
+
+Example:
+```php
+$email = filter_var("user@@example.com", FILTER_SANITIZE_EMAIL);
+echo $email; // Output: user@example.com
+```
+
+### 6.2 Use Prepared Statements (Prevent SQL Injection)
 ```php
 $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
 $stmt->execute(["user@example.com"]);
 $data = $stmt->fetch();
-```
-
-### 6.2 Sanitize User Input
-```php
-$email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
 ```
 
 ### 6.3 Restrict Database Permissions
