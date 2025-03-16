@@ -144,62 +144,64 @@ try {
 ### 6.1 What is Data Sanitization?
 Data sanitization ensures that user input is safe by removing unwanted characters. This process helps prevent security vulnerabilities such as SQL injection.
 
-#### 6.2.1 What is `FILTER_SANITIZE_EMAIL`?
-`FILTER_SANITIZE_EMAIL` removes invalid characters from an email address before using it in the database.
+### 6.2 What is SQL Injection?
+**SQL Injection** is a type of attack where an attacker can manipulate a web application's database queries by injecting malicious SQL code through user input. It happens when user input is directly inserted into SQL queries without proper validation or sanitization.
 
-Example:
-```php
-$email = filter_var("user@@example.com", FILTER_SANITIZE_EMAIL);
-echo $email; // Output: user@example.com
-```
+#### Why it Happens
+When user input is not properly handled, an attacker can input SQL commands that the application executes, leading to unauthorized access or data manipulation.
 
-### 6.2 Use Prepared Statements (Prevent SQL Injection)
-```php
-$stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-$stmt->execute(["user@example.com"]);
-$data = $stmt->fetch();
-```
+#### Step-by-Step Breakdown of How an Attacker Exploits SQL Injection:
+1. The attacker identifies a vulnerable input field, such as a login form.
+2. They input a specially crafted string that includes SQL commands.
+3. If the application does not validate or sanitize the input, the SQL query is executed with the attacker's code.
+4. The attacker gains unauthorized access or retrieves sensitive data.
 
-### 6.3 Restrict Database Permissions
-- Do not use **root** for web applications.
-- Create a **limited privilege user**.
-
-### 6.4 Enable HTTPS
-Ensure all database connections and API calls are made over **HTTPS**.
-
----
-
-## 7. What is SQL Injection?
-**SQL Injection** is a security vulnerability that allows attackers to manipulate SQL queries by injecting malicious code. It occurs when user input is not properly sanitized and is directly included in SQL statements. This can lead to unauthorized access to sensitive data, data corruption, or even complete system compromise.
-
-### Example of SQL Injection (Unsafe Query)
+### Example: How SQL Injection Works
 ```php
 <?php
 $email = $_GET['email'];
-$query = "SELECT * FROM users WHERE email = '$email'"; // Unsafe query
-$result = $conn->query($query);
+$query = "SELECT * FROM users WHERE email = '$email'";
 ?>
 ```
-In this scenario, an attacker could provide an email like `user@example.com' OR '1'='1' --`, which would bypass authentication and return all users.
+If an attacker inputs `admin' --`, the query becomes:
+```sql
+SELECT * FROM users WHERE email = 'admin' --';
+```
+This comment (`--`) effectively ignores the rest of the SQL command, allowing the attacker to bypass login security.
 
-### Safe Version Using Prepared Statements
+### 6.3 Safe Version Using Prepared Statements
+#### What are Prepared Statements?
+Prepared statements are a way to execute SQL queries that separate the SQL code from user input. This separation makes it impossible for an attacker to inject malicious SQL code.
+
+#### How Placeholders (?) Work
+Placeholders are markers in the SQL query that are replaced with actual values later. This ensures that user input is treated as data, not as part of the SQL command.
+
+### Simple Breakdown of a Prepared Statement
 ```php
 <?php
 $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
 $stmt->execute([$_GET['email']]);
-$data = $stmt->fetch();
 ?>
 ```
-Using **Prepared Statements** prevents SQL injection by ensuring that user input is treated as data, not executable code.
+1. **Preparing**: The SQL query is defined with placeholders, and the database prepares it for execution.
+2. **Binding**: User input is bound to the placeholders, ensuring it is treated as data.
+3. **Executing**: The prepared statement is executed, safely retrieving the data without risk of SQL injection.
+
+### 6.4 Restrict Database Permissions
+- Do not use **root** for web applications.
+- Create a **limited privilege user**.
+
+### 6.5 Enable HTTPS
+Ensure all database connections and API calls are made over **HTTPS**.
 
 ---
 
-## 8. Summary
+## 7. Summary
 - Use **PDO** over MySQLi for better security.
 - Always **handle errors** with `try-catch`.
 - Use **prepared statements** to prevent SQL injection.
 - Restrict **database user permissions**.
-- Always use prepared statements to prevent SQL injection.
+- **Prepared statements prevent SQL injection by treating user input as data, not code.**
 
 ---
 This note provides a structured approach from **basic setup** to **best security practices** for PHP-MySQL connections.
