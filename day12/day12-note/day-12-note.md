@@ -202,6 +202,3 @@ Ensure all database connections and API calls are made over **HTTPS**.
 - Use **prepared statements** to prevent SQL injection.
 - Restrict **database user permissions**.
 - **Prepared statements prevent SQL injection by treating user input as data, not code.**
-
----
-This note provides a structured approach from **basic setup** to **best security practices** for PHP-MySQL connections.
