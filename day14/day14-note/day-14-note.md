@@ -2,15 +2,11 @@
 
 This document provides a **detailed summary** of all topics covered from **Day 1 to the Final Project**.
 
----
-
 ## **1. Introduction to Web Development**
 Web development consists of **frontend (client-side)** and **backend (server-side)** development.  
 - **Frontend:** Handles user interface and interactions (HTML, CSS, JavaScript).
 - **Backend:** Manages data processing and database interactions (PHP, MySQL).
 - **Full-Stack:** Combines both frontend and backend.
-
----
 
 ## **2. HTML - The Structure of Webpages**
 HTML (**HyperText Markup Language**) defines the structure of web pages.  
@@ -33,8 +29,6 @@ HTML (**HyperText Markup Language**) defines the structure of web pages.
 - **Images:** `<img src="image.jpg">`
 - **Forms:** `<form>, <input>, <button>`
 
----
-
 ## **3. CSS - Styling Web Pages**
 CSS (**Cascading Style Sheets**) is used to design web pages.
 
@@ -50,8 +44,6 @@ body {
     font-family: Arial, sans-serif;
 }
 ```
-
----
 
 ## **4. JavaScript - Making Web Pages Interactive**
 JavaScript (**JS**) adds dynamic behavior to web pages.
@@ -77,8 +69,6 @@ fetch("server.php")
     .then(data => console.log(data));
 ```
 
----
-
 ## **5. PHP - Server-Side Scripting**
 PHP is a **backend scripting language** used for dynamic web applications.
 
@@ -101,8 +91,6 @@ function greet($name) {
     return "Hello, " . $name . "!";
 }
 ```
-
----
 
 ## **6. MySQL - Database Management**
 MySQL is a **relational database** used to store and manage data.
@@ -139,8 +127,6 @@ UPDATE users SET name = 'Bob' WHERE id = 1;
 DELETE FROM users WHERE id = 1;
 ```
 
----
-
 ## **7. PHP & MySQL Connection**
 ### **7.1 Using PDO for Database Connection**
 ```php
@@ -165,8 +151,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 ```
-
----
 
 ## **8. Security Best Practices**
 ### **8.1 SQL Injection & Prevention**
