@@ -175,9 +175,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $query = "SELECT * FROM users WHERE email = '$email'";
 ```
 **Secure Code (Prepared Statements):**
+
+#### Method 1:
 ```php
-$stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-$stmt->execute([$email]);
+$stmt = $conn->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
+$stmt->execute([$email, $password]);
+```
+---
+#### Method 2:
+```php
+$stmt = $conn->prepare("SELECT * FROM users WHERE email = :email AND password = :password");
+$stmt->bindParam(':email', $email);
+$stmt->bindParam(':password', $password
+$stmt->execute();
 ```
 
 ### **8.2 Data Validation & Sanitization**
