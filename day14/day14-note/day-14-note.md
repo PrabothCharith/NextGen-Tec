@@ -152,8 +152,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 ```
 
-## **8. Security Best Practices**
-### **8.1 SQL Injection & Prevention**
+## **8. Sessions & Cookies**
+### **8.1 Sessions**
+Sessions store user data on the server.
+
+#### 8.1.1 Start a Session
+```php
+session_start();
+```
+#### 8.1.2 Set Session Data
+```php
+$_SESSION["username"] = "JohnDoe";
+```
+#### 8.1.3 Get Session Data
+```php
+if(isset($_SESSION["username"])) {
+    echo "Username: " . $_SESSION["username"];
+}
+```
+#### 8.1.4 Destroy Session
+```php
+session_start();
+session_unset();
+session_destroy();
+```
+#### 8.1.5 Session Timeout
+```php
+$lifetime = 3600; // 1 hour (in seconds)
+session_set_cookie_params($lifetime);
+session_start();
+```
+
+### **8.2 Cookies**
+Cookies store user data on the client-side.
+
+#### 8.2.1 Set data
+```php
+setcookie("username", "JohnDoe", time() + (86400 * 30), "/");
+```
+#### 8.2.2 Get data
+```php
+if(isset($_COOKIE["username"])) {
+    echo "Username: " . $_COOKIE["username"];
+}
+```
+### **8.3 Destroying Cookies**
+```php
+setcookie("username", "", time() - 3600, "/");
+```
+
+## **9. Security Best Practices**
+### **9.1 SQL Injection & Prevention**
 **Vulnerable Code:**
 ```php
 $query = "SELECT * FROM users WHERE email = '$email'";
@@ -174,7 +223,7 @@ $stmt->bindParam(':password', $password
 $stmt->execute();
 ```
 
-### **8.2 Data Validation & Sanitization**
+### **9.2 Data Validation & Sanitization**
 ```php
 $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
 ```
