@@ -2,15 +2,11 @@
 
 This document provides a **detailed summary** of all topics covered from **Day 1 to the Final Project**.
 
----
-
 ## **1. Introduction to Web Development**
 Web development consists of **frontend (client-side)** and **backend (server-side)** development.  
 - **Frontend:** Handles user interface and interactions (HTML, CSS, JavaScript).
 - **Backend:** Manages data processing and database interactions (PHP, MySQL).
 - **Full-Stack:** Combines both frontend and backend.
-
----
 
 ## **2. HTML - The Structure of Webpages**
 HTML (**HyperText Markup Language**) defines the structure of web pages.  
@@ -33,8 +29,6 @@ HTML (**HyperText Markup Language**) defines the structure of web pages.
 - **Images:** `<img src="image.jpg">`
 - **Forms:** `<form>, <input>, <button>`
 
----
-
 ## **3. CSS - Styling Web Pages**
 CSS (**Cascading Style Sheets**) is used to design web pages.
 
@@ -50,8 +44,6 @@ body {
     font-family: Arial, sans-serif;
 }
 ```
-
----
 
 ## **4. JavaScript - Making Web Pages Interactive**
 JavaScript (**JS**) adds dynamic behavior to web pages.
@@ -77,8 +69,6 @@ fetch("server.php")
     .then(data => console.log(data));
 ```
 
----
-
 ## **5. PHP - Server-Side Scripting**
 PHP is a **backend scripting language** used for dynamic web applications.
 
@@ -101,8 +91,6 @@ function greet($name) {
     return "Hello, " . $name . "!";
 }
 ```
-
----
 
 ## **6. MySQL - Database Management**
 MySQL is a **relational database** used to store and manage data.
@@ -139,8 +127,6 @@ UPDATE users SET name = 'Bob' WHERE id = 1;
 DELETE FROM users WHERE id = 1;
 ```
 
----
-
 ## **7. PHP & MySQL Connection**
 ### **7.1 Using PDO for Database Connection**
 ```php
@@ -166,21 +152,78 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 ```
 
----
+## **8. Sessions & Cookies**
+### **8.1 Sessions**
+Sessions store user data on the server.
 
-## **8. Security Best Practices**
-### **8.1 SQL Injection & Prevention**
+#### 8.1.1 Start a Session
+```php
+session_start();
+```
+#### 8.1.2 Set Session Data
+```php
+$_SESSION["username"] = "JohnDoe";
+```
+#### 8.1.3 Get Session Data
+```php
+if(isset($_SESSION["username"])) {
+    echo "Username: " . $_SESSION["username"];
+}
+```
+#### 8.1.4 Destroy Session
+```php
+session_start();
+session_unset();
+session_destroy();
+```
+#### 8.1.5 Session Timeout
+```php
+$lifetime = 3600; // 1 hour (in seconds)
+session_set_cookie_params($lifetime);
+session_start();
+```
+
+### **8.2 Cookies**
+Cookies store user data on the client-side.
+
+#### 8.2.1 Set data
+```php
+setcookie("username", "JohnDoe", time() + (86400 * 30), "/");
+```
+#### 8.2.2 Get data
+```php
+if(isset($_COOKIE["username"])) {
+    echo "Username: " . $_COOKIE["username"];
+}
+```
+### **8.3 Destroying Cookies**
+```php
+setcookie("username", "", time() - 3600, "/");
+```
+
+## **9. Security Best Practices**
+### **9.1 SQL Injection & Prevention**
 **Vulnerable Code:**
 ```php
 $query = "SELECT * FROM users WHERE email = '$email'";
 ```
 **Secure Code (Prepared Statements):**
+
+#### Method 1:
 ```php
-$stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-$stmt->execute([$email]);
+$stmt = $conn->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
+$stmt->execute([$email, $password]);
+```
+---
+#### Method 2:
+```php
+$stmt = $conn->prepare("SELECT * FROM users WHERE email = :email AND password = :password");
+$stmt->bindParam(':email', $email);
+$stmt->bindParam(':password', $password);
+$stmt->execute();
 ```
 
-### **8.2 Data Validation & Sanitization**
+### **9.2 Data Validation & Sanitization**
 ```php
 $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
 ```
