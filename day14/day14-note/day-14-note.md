@@ -219,7 +219,7 @@ $stmt->execute([$email, $password]);
 ```php
 $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email AND password = :password");
 $stmt->bindParam(':email', $email);
-$stmt->bindParam(':password', $password
+$stmt->bindParam(':password', $password);
 $stmt->execute();
 ```
 
