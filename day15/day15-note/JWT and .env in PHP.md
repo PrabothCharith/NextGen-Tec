@@ -66,6 +66,20 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
        ```gitignore
        .env
        ```
+<br/>
+
+> [!NOTE]
+> Somehow your `.env` file is not working, you can use this code to load the environment variables:
+```php
+    $dotenv->required([
+        'VARIABLE_NAME_1',
+        'VARIABLE_NAME_2',
+    ]);
+
+    $variable1 = $_ENV['VARIABLE_NAME_1'];
+    $variable2 = $_ENV['VARIABLE_NAME_2'];
+```
+<br/>
 
 ## Step 3: Create the JWT Helper Class
 1. Create a new file named `JwtHelper.php` in your project directory.
