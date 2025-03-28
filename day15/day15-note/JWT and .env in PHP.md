@@ -55,6 +55,13 @@
       JWT_SECRET=your_jwt_secret_key
       ```
    - Replace `your_jwt_secret_key` with a strong secret key for signing your JWTs.
+
+> [!TIP]
+> If you want to generate a strong secret key, you can use the following command in your terminal:
+``` bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
    3. Make sure to add the `.env` file to your `.gitignore` file to prevent it from being committed to version control:
        ```gitignore
        .env
